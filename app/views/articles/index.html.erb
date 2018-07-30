@@ -8,14 +8,14 @@
 
 <% if (@articles.count != 0) %>
 <p>
-    <%= @articles.each do |article| %>
+    <% @articles.each do |article| %>
         <li>
             <%= article.title %>
             <%= link_to 'Show', :controller => 'articles', :action => 'show', :id => article %>
-            <% if current_user == article.author_id %>
+            <% if current_user.id == article.author_id %>
                 <%= link_to 'Edit', :controller => 'articles', :action => 'edit',
                 :id => article %>
-                <%= link_to 'Delete', :controller => 'articles', :action => 'destroy', :id => article %>
+                <%= link_to 'Delete', article_path(article), :method => :delete %>
             <% end %> 
         </li>
     <% end %>
