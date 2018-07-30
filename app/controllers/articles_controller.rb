@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(article_params)
+        @article.author_id = current_user.id
         if @article.save
             flash[:notice] = 'Article has been created successfully.'
             redirect_to :action => :index
@@ -49,7 +50,8 @@ class ArticlesController < ApplicationController
 
     def destroy
         if !current_user_is_author?
-            return render :action => :show
+            flash[:alert] = 'You can\'t not delete this article.'
+            return render :action => :edit
         end
         @article.destroy
 
