@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :set_article, :only => [:edit, :update, :show, :destroy]
+    before_action :current_user_is_author?, :only => [:edit, :update, :destroy]
 
     def index
         @articles = Article.page(params[:page]).per(5)
@@ -21,10 +22,17 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        
+        if  !current_user_is_author?
+            flash[:alert] = 'You can\'t not edit this article.'
+            render :action => :show
+        end
     end
 
     def update
+        if !current_user_is_author?
+            flash[:alert] = 'You can\'t not edit this article.'
+            return render :action => :show
+        end
         
         if @article.update(article_params)
             flash[:notice] = 'Article has been saved successfully.'
@@ -40,6 +48,9 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
+        if !current_user_is_author?
+            return render :action => :show
+        end
         @article.destroy
 
         flash[:notice] = 'Article has been deleted successfully.'
@@ -53,5 +64,9 @@ class ArticlesController < ApplicationController
 
         def set_article
             @article = Article.find(params[:id])
+        end
+
+        def current_user_is_author?
+            current_user.id == @article.author_id
         end
 end
