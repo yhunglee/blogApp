@@ -1,1 +1,26 @@
-<%= paginate @events %>
+<p>
+<%= if @articles.nil? then paginate @articles end %>
+</p>
+
+<div class="paginate-info">
+    <%= if !(@articles.nil?) then page_entries_info @articles end %>
+</div>
+
+<% if (@articles.count != 0) %>
+<p>
+    <%= @articles.each do |article| %>
+        <li>
+            <%= article.title %>
+            <%= link_to 'Show', :controller => 'articles', :action => 'show', :id => article %>
+            <% if current_user == article.author_id %>
+                <%= link_to 'Edit', :controller => 'articles', :action => 'edit',
+                :id => article %>
+                <%= link_to 'Delete', :controller => 'articles', :action => 'destroy', :id => article %>
+            <% end %> 
+        </li>
+    <% end %>
+</p>
+<% end %>
+
+
+<%= link_to 'New Article', new_article_path %>
