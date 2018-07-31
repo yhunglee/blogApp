@@ -1,10 +1,41 @@
 <div> 
     <span> title: </span>
     <%= @article.title %>
+    <div>
+        <span> Author: </span>
+        <%= @article.user.email %>
+    </div>
 </div>
 <div>
     <span> content: </span>
     <%= @article.content %>
 </div>
+
+<% if (@article.comments.count != 0) %>
+<div>
+    <div> comments: </div>
+
+    <% @article.comments.each { |comment| %>
+    <div>
+        <span> Comment author :</span> <%= comment.user.email %>  
+        <span> Comment time: </span> <%= comment.created_at %>
+        <div>
+        <span> Comment :</span>
+        <%= comment.content %>
+        </div>
+        <br/>
+    </div>
+    <% } %>
+</div>
+<% end %>
+
+<p>
+</p>
+
+<div>
+<%= render "comments/new" %>
+</div>
+<p>
+</p>
 
 <p><%= link_to 'Back to index', :controller => 'articles', :action => 'index' %></p>

@@ -1,0 +1,10 @@
+<p>
+Add new comment
+</p>
+
+<%= form_for([@article, @comment]) do |f| %>
+    <%= f.text_field :content %>
+    <%= f.hidden_field :article_id, :value => @article.id %>
+    <%= f.hidden_field :author_id, :value => current_user.id %>
+    <%= f.submit %>
+<% end %>
