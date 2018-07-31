@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     before_action :current_user_is_author?, :only => [:edit, :update, :destroy]
 
     def index
-        @articles = Article.page(params[:page]).per(5)
+        @articles = Article.includes(:user).page(params[:page]).per(5)
     end
 
     def new
@@ -24,14 +24,14 @@ class ArticlesController < ApplicationController
 
     def edit
         if  !current_user_is_author?
-            flash[:alert] = 'You can\'t not edit this article.'
+            flash[:alert] = 'You can\'t edit this article.'
             render :action => :show
         end
     end
 
     def update
         if !current_user_is_author?
-            flash[:alert] = 'You can\'t not edit this article.'
+            flash[:alert] = 'You can\'t edit this article.'
             return render :action => :show
         end
         
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
 
     def destroy
         if !current_user_is_author?
-            flash[:alert] = 'You can\'t not delete this article.'
+            flash[:alert] = 'You can\'t delete this article.'
             return render :action => :edit
         end
         @article.destroy
@@ -61,11 +61,11 @@ class ArticlesController < ApplicationController
 
     private
         def article_params
-            params.require(:article).permit(:title, :content)
+            params.require(:article).permit(:title, :content, :author_id)
         end
 
         def set_article
-            @article = Article.find(params[:id])
+            @article = Article.includes(:comments, :user).find(params[:id])
         end
 
         def current_user_is_author?
