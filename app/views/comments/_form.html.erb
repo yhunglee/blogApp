@@ -1,0 +1,5 @@
+
+    <%= f.text_field :content %>
+    <%= f.hidden_field :article_id, :value => @article.id %>
+    <%= f.hidden_field :author_id, :value => current_user.id %>
+    

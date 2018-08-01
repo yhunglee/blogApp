@@ -1,0 +1,8 @@
+<div>
+Edit comment
+</div>
+
+<%= form_for([@article, @comment], :url => { :controller => 'comments', :action => 'update'} )do |f| %>
+    <%= render :partial => "form", :locals => {:f => f} %>
+    <%= f.submit 'Update' %>
+<% end %>

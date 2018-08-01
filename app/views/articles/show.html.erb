@@ -11,8 +11,11 @@
     <%= @article.content %>
 </div>
 
+
 <% if (@article.comments.count != 0) %>
 <div>
+        <br/>
+        <br/>
     <div> comments: </div>
 
     <% @article.comments.each { |comment| %>
@@ -20,9 +23,12 @@
         <span> Comment author :</span> <%= comment.user.email %>  
         <span> Comment time: </span> <%= comment.created_at %>
         <div>
-        <span> Comment :</span>
-        <%= comment.content %>
+            <span> Comment :</span>
+            <%= comment.content %>
         </div>
+        <%= link_to 'Edit comment',  edit_article_comment_path(@article, comment) %>
+        <%= link_to 'Delete comment', article_comment_path(@article, comment), :method => "delete" %>
+        <br/>
         <br/>
     </div>
     <% } %>
