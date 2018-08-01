@@ -1,5 +1,5 @@
 <p>
-<%= if @articles.nil? then paginate @articles end %>
+<%= if !(@articles.nil?) then paginate @articles end %>
 </p>
 
 <div class="paginate-info">
@@ -17,6 +17,8 @@
                 :id => article %>
                 <%= link_to 'Delete', article_path(article), :method => :delete %>
             <% end %> 
+            <span> <%= article.updated_at %> </span>
+            <span> <%= article.user.email %> </span>
         </li>
     <% end %>
 </p>
