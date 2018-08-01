@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     before_action :current_user_is_author?, :only => [:edit, :update, :destroy]
 
     def index
-        @articles = Article.includes(:user).page(params[:page]).per(5)
+        @articles = Article.includes(:user).page(params[:page]).per(5).order(updated_at: :desc)
     end
 
     def new
