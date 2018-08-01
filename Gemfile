@@ -69,3 +69,8 @@ gem 'kaminari'
 
 # authenticator
 gem 'devise'
+
+# bootstrap
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.3'
