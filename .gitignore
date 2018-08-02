@@ -28,3 +28,16 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore config/database.yml and config/secrets.yml
+/config/database.yml
+/config/database.yml.example
+/config/secrets.yml
+/config/secrets.yml.example
+
+# Ignore .DS_store
+/.DS_store
+
+# Ignore .env file used by dotenv-rails gem
+/.env
+
