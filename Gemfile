@@ -84,3 +84,6 @@ gem 'popper_js', '~> 1.14.3'
 
 # postgresql
 gem 'pg'
+
+# load env. variables such as: SECRET_KEY_BASE
+gem 'dotenv-rails'
