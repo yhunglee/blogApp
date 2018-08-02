@@ -74,3 +74,6 @@ gem 'devise'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.3'
+
+# postgresql
+gem 'pg'
