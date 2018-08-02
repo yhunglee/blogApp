@@ -34,11 +34,11 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 set :rvm_custom_path, '/usr/local/rvm'
 
 # Remote server using rvm
-set :rvm_ruby_version, '2.4.2@rails-5.2.0'
+set :rvm_ruby_version, '2.4.2@rails5.2.0'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-#set :default_env, { path: "/usr/share/rvm/rubies/ruby-2.4.2/bin/ruby:$PATH" }
+set :default_env, { path: "/usr/share/rvm/rubies/ruby-2.4.2/bin/ruby:$PATH" }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
