@@ -18,5 +18,7 @@ module BlogApp
 
     # set timezone = Taipei
     config.time_zone = "Taipei"
+
+    config.secret_key_base = ENV['SECRET_KEY_BASE']
   end
 end
