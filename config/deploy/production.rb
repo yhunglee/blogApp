@@ -21,9 +21,9 @@ set :stage, :production
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-role :app, %w{agriappuser@agriculture.csie.io}
-role :web, %w{agriappuser@agriculture.csie.io}
-role :db, %w{agriappuser@agriculture.csie.io}
+role :app, %w{blogappuser@agriculture.csie.io}
+role :web, %w{blogappuser@agriculture.csie.io}
+role :db, %w{blogappuser@agriculture.csie.io}
 
 # Configuration
 # =============
