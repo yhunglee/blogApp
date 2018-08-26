@@ -1,9 +1,10 @@
-<p>
+<div class="form-group">
 <%= f.label :title, "Title" %>
-<%= f.text_field :title %>
-</p>
 
-<p>
+<%= f.text_field :title, class: "form-control" %>
+</div>
+
+<div class="form-group">
 <%= f.label :content, "Content" %>
-<%= f.text_area :content %>
-</p>
+<%= f.text_area :content, class: "form-control", rows: 15 %>
+</div>
