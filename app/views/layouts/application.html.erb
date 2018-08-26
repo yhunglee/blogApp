@@ -32,8 +32,10 @@
   <% end %>
 
   <body>
-    <%= yield :login_status %>
+    <div class="container">
+      <%= yield :login_status %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
