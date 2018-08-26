@@ -4,6 +4,8 @@ Leave a comment
 <div class="card-body">
     <%= form_for([@article, @comment]) do |f| %>
         <%= render :partial => "comments/form", :locals => {:f => f} %>
-        <%= f.submit 'Create', class: "btn btn-primary" %>
+        <div class="row justify-content-end">
+            <%= f.submit 'Create', class: "btn btn-primary col-3 mr-3" %>
+        </div>
     <% end %>
 </div>
