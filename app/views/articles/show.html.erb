@@ -1,49 +1,69 @@
-<div> 
-    <span> title: </span>
-    <%= @article.title %>
-    <div>
-        <span> Author: </span>
-        <%= @article.user.email %>
-    </div>
-</div>
-<div>
-    <span> content: </span>
-    <%= @article.content %>
-</div>
 
+    <div class="row"> 
+        <div class="col-lg-8">
+            <h1 class="mt-4">
+                <%= @article.title %>
+            </h1>
+            <div class="lead row">
+                <div class="col-4 text-left">
+                    By: <%= @article.user.email %>
+                </div>
+                <div class="col-8 text-right">
+                    Posted on <%= @article.created_at %>
+                </div>
+            </div>
 
-<% if (@article.comments.count != 0) %>
-<div>
-        <br/>
-        <br/>
-    <div> comments: </div>
+            <hr>
 
-    <% @article.comments.each { |comment| %>
-    <div>
-        <span> Comment author :</span> <%= comment.user.email %>  
-        <span> Comment time: </span> <%= comment.created_at %>
-        <div>
-            <span> Comment :</span>
-            <%= comment.content %>
+            <%= @article.content %>
+
+            <hr>
+
+            <div class="card my-4">
+                <%= render "comments/new" %>
+            </div>
+
+            <% if (@article.comments.count != 0) %>
+                    <% @article.comments.each { |comment| %>
+                    <div class="media mb-4">
+                        <div class="media-body">
+                            <h5 class="mt-5 row ">
+                                <div class="text-left col-3"><%= comment.user.email %></div> 
+                                <div class="text-right col-9"><%= comment.created_at %> </div>
+                            </h5>
+                            
+                            <div class="comment-content">
+                                <%= comment.content %>
+                            </div>    
+                                
+                            <div class="comment-operation row justify-content-end">
+                                <% if comment.author_id == current_user.id %>
+                                    
+                                        <%= link_to 'Edit comment',  edit_article_comment_path(@article, comment), class: "btn btn-warning col-3 mr-1" %>
+                                        <%= link_to 'Delete comment', article_comment_path(@article, comment), :method => "delete", class: "btn btn-danger col-3" %>
+                                    
+                                <% end %>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <% } %> 
+            <% end %>
+
+            <hr>
+
+            <p>
+            </p>
+            <p>
+            </p>
+
+            <p><%= link_to 'Back to index', :controller => 'articles', :action => 'index' %></p>
+
         </div>
-        <% if comment.author_id == current_user.id %>
-            <%= link_to 'Edit comment',  edit_article_comment_path(@article, comment) %>
-            <%= link_to 'Delete comment', article_comment_path(@article, comment), :method => "delete" %>
-        <% end %>
-        <br/>
-        <br/>
     </div>
-    <% } %>
-</div>
-<% end %>
 
-<p>
-</p>
 
-<div>
-<%= render "comments/new" %>
-</div>
-<p>
-</p>
 
-<p><%= link_to 'Back to index', :controller => 'articles', :action => 'index' %></p>
+    
+
+    

@@ -1,5 +1,6 @@
-
-    <%= f.text_field :content %>
+<div class="form-group">
+    <%= f.text_area :content, class: "form-control", rows: 3 %>
     <%= f.hidden_field :article_id, :value => @article.id %>
     <%= f.hidden_field :author_id, :value => current_user.id %>
     
+</div>

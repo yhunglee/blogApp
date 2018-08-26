@@ -1,8 +1,9 @@
-<p>
-Add new comment
-</p>
-
-<%= form_for([@article, @comment]) do |f| %>
-    <%= render :partial => "comments/form", :locals => {:f => f} %>
-    <%= f.submit 'Create' %>
-<% end %>
+<h5 class="card-header">
+Leave a comment
+</h5>
+<div class="card-body">
+    <%= form_for([@article, @comment]) do |f| %>
+        <%= render :partial => "comments/form", :locals => {:f => f} %>
+        <%= f.submit 'Create', class: "btn btn-primary" %>
+    <% end %>
+</div>
