@@ -1,28 +1,54 @@
-<p>
-<%= if !(@articles.nil?) then paginate @articles end %>
-</p>
 
-<div class="paginate-info">
-    <%= if !(@articles.nil?) then page_entries_info @articles end %>
+
+
+<div class="col-lg-8 col-md-10 mx-auto">
+<% if (@articles.count != 0) %>
+
+        <% @articles.each do |article| %>
+            <div class="post-preview">
+                
+                    
+                    <%= link_to :controller => 'articles', :action => 'show', :id => article do %>
+                        <h2 class="post-title">
+                            <%= article.title %>
+                        </h2>
+                        <h3 class="post-subtitle">
+                            <%= excerpt(article.content, "") %>
+                        </h3>
+                    <% end %>
+                    <p class="post-meta">
+                        Posted by <%= article.user.email %>
+                        on <%= article.updated_at.inspect() %> 
+                    </p>
+                    <% if current_user.id == article.author_id %>
+                        <div class="article-operation row justify-content-end">
+                            <%= link_to 'Edit', {:controller => 'articles', :action => 'edit',
+                            :id => article}, class: "btn btn-warning col-3 mr-1 " %>
+                            <%= link_to 'Delete', article_path(article), :method => :delete, class: "btn btn-danger col-3 mr-1" %>
+                        </div>
+                    <% end %> 
+                    
+            </div>
+            <hr>
+        <% end %>
+    
+    <% end %>
+
+    <div class="pagination justify-content-end">
+    
+        <%= if !(@articles.nil?) then paginate @articles, theme: 'bootstrap4' end %>
+
+        
+    </div>
+
+    <div class="pagination paginate-info justify-content-end">
+        <%= if !(@articles.nil?) then page_entries_info @articles end %>
+    </div>
+    
+
+    <%= link_to 'New Article', new_article_path , class: "btn btn-primary" %>
 </div>
 
-<% if (@articles.count != 0) %>
-<p>
-    <% @articles.each do |article| %>
-        <li>
-            <%= article.title %>
-            <%= link_to 'Show', :controller => 'articles', :action => 'show', :id => article %>
-            <% if current_user.id == article.author_id %>
-                <%= link_to 'Edit', :controller => 'articles', :action => 'edit',
-                :id => article %>
-                <%= link_to 'Delete', article_path(article), :method => :delete %>
-            <% end %> 
-            <span> <%= article.updated_at %> </span>
-            <span> <%= article.user.email %> </span>
-        </li>
-    <% end %>
-</p>
-<% end %>
 
 
-<%= link_to 'New Article', new_article_path %>
+
