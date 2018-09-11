@@ -1,0 +1,21 @@
+version: "2.1"
+
+services:
+    db:
+        image: postgres
+        volumes:
+            - ./tmp/db:/var/lib/postgresql/data
+    blogapp:
+        image: blogapp
+        build: .
+        ports:
+            - 3000:3000
+    web:
+        build: .
+        command: bundle exec rails s -p 3000 -b '0.0.0.0'
+        volumes:
+            - .:/blogapp
+        ports:
+            - "3000:3000"
+        depends_on:
+            - db
