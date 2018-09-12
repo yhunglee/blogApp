@@ -30,9 +30,16 @@ ENV TZ Asia/Taipei
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
+# Set Rails to run in production
+ENV RAILS_ENV production 
+ENV RACK_ENV production
+
+
 WORKDIR /app
 COPY . /app
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
+# Precompile Rails assets
+RUN bundle exec rails assets:precompile
