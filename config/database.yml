@@ -27,4 +27,4 @@ production:
     username: <%= ENV["DB_USERNAME"] %>
     password: <%= ENV["DB_PASSWORD"] %>
     host: db
-    port: 5435
+    port: 5432
