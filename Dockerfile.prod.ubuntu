@@ -33,6 +33,8 @@ RUN bundle config --global frozen 1
 # Set Rails to run in production
 ENV RAILS_ENV production 
 ENV RACK_ENV production
+ARG ARG_SECRET_KEY_BASE 
+ENV SECRET_KEY_BASE = $ARG_SECRET_KEY_BASE
 
 
 WORKDIR /app
