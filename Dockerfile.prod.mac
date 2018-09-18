@@ -36,10 +36,10 @@ ENV RACK_ENV production
 
 
 WORKDIR /app
-COPY . /app
-
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+COPY . /app
 
 # Precompile Rails assets
 RUN bundle exec rails assets:precompile
