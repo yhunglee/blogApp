@@ -8,14 +8,9 @@ EXPOSE 3000
 
 # Default Environment
 ENV APACHE_VERSION 2.4.7
-ENV PASSENGER_VERSION 5.3.4
 
 # Requirement
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev libpcap-dev libssl-dev
-
-
-# Passenger gem for production
-#RUN gem install passenger -v $PASSENGER_VERSION
 
 # === Rails Application
 # FROM AS
@@ -36,12 +31,11 @@ ENV RACK_ENV production
 ARG ARG_SECRET_KEY_BASE 
 ENV SECRET_KEY_BASE = $ARG_SECRET_KEY_BASE
 
-
 WORKDIR /app
-COPY . /app
-
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+COPY . /app
 
 # Precompile Rails assets
 RUN bundle exec rails assets:precompile
