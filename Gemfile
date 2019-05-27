@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
 # Use SASSC-ruby
 gem 'sassc'
 # Use Uglifier as compressor for JavaScript assets
@@ -64,7 +64,7 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -75,10 +75,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 
 # authenticator
-gem 'devise'
+gem 'devise', ">= 4.6.0"
 
 # bootstrap
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14.3'
 
@@ -95,3 +95,28 @@ gem 'dotenv-rails'
 
 # gem passenger for application server
 gem 'passenger'
+
+
+# gem actionview
+gem 'actionview', ">= 5.2.2.1"
+
+# gem railties
+gem 'railties', '>= 5.2.2.1'
+
+# gem nokogiri
+gem 'nokogiri', '>= 1.8.5'
+
+# gem activejob
+gem 'activejob', '>= 5.2.1.1'
+
+# gem activestorage
+gem 'activestorage', '>= 5.2.1.1'
+
+# gem rack
+gem 'rack', '>= 2.0.6'
+
+# gem loofah
+gem 'loofah', '>= 2.2.3'
+
+# gem rubyzip
+gem 'rubyzip', '>= 1.2.2'
