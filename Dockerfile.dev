@@ -1,4 +1,4 @@
-FROM starefossen/ruby-node:2-10 AS passenger_ruby
+FROM smikino/ruby-node:2-10 AS passenger_ruby
 
 LABEL maintainer="howard@csie.io"
 
@@ -32,7 +32,9 @@ RUN bundle config --global frozen 1
 
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+# dirty hack for workarounding use bunder version 2 to install: https://stephencodes.com/upgrading-ruby-dockerfiles-to-use-bundler-2-0-1/
+ENV BUNDLER_VERSION 2.0.2
+RUN gem install bundler && bundle install
 
 COPY . /app
 
